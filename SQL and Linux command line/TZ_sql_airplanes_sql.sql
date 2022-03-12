@@ -1,32 +1,32 @@
--- Создаем таблицу airplanes
+-- РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ airplanes
 create table airplane (
 	airplane_id serial primary key,
 	model varchar(30) unique not null
 );
 
--- Вносим модели самолетов
+-- Р’РЅРѕСЃРёРј РјРѕРґРµР»Рё СЃР°РјРѕР»РµС‚РѕРІ
 insert into airplane(model)
-values ('Boeing'), ('Сухой'), ('Airbus');
--- Создаем таблицу pilot
+values ('Boeing'), ('Г‘ГіГµГ®Г©'), ('Airbus');
+-- РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ pilot
 create table pilot (
 	pilot_id serial primary key,
 	first_name varchar(30),
 	last_name varchar(30)	
 );
 
--- Вносим имена пилотов
+-- Р’РЅРѕСЃРёРј РёРјРµРЅР° РїРёР»РѕС‚РѕРІ
 insert into pilot(first_name, last_name)
-values ('Сергей', 'Шарапов'); 
+values ('Г‘ГҐГ°ГЈГҐГ©', 'ГГ Г°Г ГЇГ®Гў'); 
 insert into pilot(first_name, last_name)
-values ('Саня', 'Сыч');
+values ('Г‘Г Г­Гї', 'Г‘Г»Г·');
 insert into pilot(first_name, last_name)
-values ('Маша', 'Сыч');
+values ('ГЊГ ГёГ ', 'Г‘Г»Г·');
 insert into pilot(first_name, last_name)
-values ('Дима', 'Валиев');
+values ('Г„ГЁГ¬Г ', 'Г‚Г Г«ГЁГҐГў');
 insert into pilot(first_name, last_name)
-values ('Ира', 'Смирнова');
+values ('Г€Г°Г ', 'Г‘Г¬ГЁГ°Г­Г®ГўГ ');
 
--- Создаем таблицу airplane_pilot и устанавливаем связь между всеми таблицами
+-- РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ airplane_pilot Рё СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІСЏР·СЊ РјРµР¶РґСѓ РІСЃРµРјРё С‚Р°Р±Р»РёС†Р°РјРё
 create table airplane_pilot (
 	id serial primary key,
 	pilot_id int not null,
@@ -38,7 +38,7 @@ create table airplane_pilot (
 		references airplane(airplane_id)
 );
 
--- Вносим данные в таблицу согласно оригинальному ТЗ
+-- Р’РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ С‚Р°Р±Р»РёС†Сѓ СЃРѕРіР»Р°СЃРЅРѕ РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРјСѓ РўР—
 insert into airplane_pilot(pilot_id, airplane_id, flight_date)
 values (1, 1, '2022-02-28'),
 (2, 1, '2022-02-28'),
@@ -49,7 +49,7 @@ values (1, 1, '2022-02-28'),
 (4, 2, '2022-02-28'),
 (1, 1, '2022-02-28');
 
--- Выводим количество полетов на Boeing каждого пилота
+-- Р’С‹РІРѕРґРёРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»РµС‚РѕРІ РЅР° Boeing РєР°Р¶РґРѕРіРѕ РїРёР»РѕС‚Р°
 select count(*) as Boeing_Flights, pilot.first_name, pilot.last_name
 from airplane_pilot
 join pilot on airplane_pilot.pilot_id=pilot.pilot_id
